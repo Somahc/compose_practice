@@ -36,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -77,7 +78,10 @@ fun LayoutSample() {
 //        horizontalArrangement = Arrangement.spacedBy(8.dp)
         horizontalAlignment = Alignment.CenterHorizontally
     ){
-        Text("Welcome to, ", color = Color.Red)
+        Text(
+            text = "Welcome to, ",
+            color = colorResource(id = R.color.purple_200)
+            )
         Text("Summer Intern", color = Color.Blue)
         Text("in 2023", color = Color.Green)
     }
