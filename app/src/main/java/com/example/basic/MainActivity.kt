@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -27,6 +28,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -43,8 +45,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.basic.ui.theme.BasicTheme
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -61,17 +65,38 @@ class MainActivity : ComponentActivity() {
 //                    ) {
 //                        ButtonSample()
 //                    }
-                    Box(
-                        contentAlignment = Alignment.Center
-                    ) {
-                        ImageSample()
-                    }
+//                    Box(
+//                        contentAlignment = Alignment.Center
+//                    ) {
+//                        ImageSample()
+//                    }
+
+                    CountApp()
                 }
             }
         }
     }
 }
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun CountApp(viewModel: CounterViewModel = viewModel()) {
+    val count: Int by viewModel.count.collectAsState()
 
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceEvenly,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(
+            text = "$count"
+        )
+        Button(onClick = {
+            viewModel.increaseCount()
+        }) {
+            Icon(Icons.Outlined.Add, contentDescription = "+")
+        }
+    }
+}
 @Composable
 fun LayoutSample() {
     Column(
