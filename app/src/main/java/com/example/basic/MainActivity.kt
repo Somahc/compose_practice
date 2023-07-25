@@ -19,6 +19,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -94,6 +95,18 @@ fun CountApp(viewModel: CounterViewModel = viewModel()) {
             viewModel.increaseCount()
         }) {
             Icon(Icons.Outlined.Add, contentDescription = "+")
+        }
+
+        Button(onClick = {
+            viewModel.decreaseCount()
+        }) {
+            Icon(Icons.Outlined.Delete, contentDescription = "-")
+        }
+
+        Button(onClick = {
+            viewModel.resetCount()
+        }) {
+            Icon(Icons.Outlined.Delete, contentDescription = "reset")
         }
     }
 }

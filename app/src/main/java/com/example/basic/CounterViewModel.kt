@@ -12,4 +12,12 @@ class CounterViewModel : ViewModel() {
     fun increaseCount() {
         _count.value++
     }
+
+    fun decreaseCount() {
+        _count.value--
+    }
+
+    fun resetCount() {
+        _count.value = 0
+    }
 }
